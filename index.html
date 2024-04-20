@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parallax Landing Page</title>
+  <style>
+    /* Reset default margin and padding */
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Style each section */
+    .section {
+      height: 100vh; /* Set height to 100% of viewport height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden; /* Hide overflow to prevent scrolling */
+      position: relative; /* Needed for parallax effect */
+    }
+
+    /* Style the container for image or video */
+    .media-container {
+      width: 70%; /* Max width of 70% */
+      height: 100%;
+      overflow: hidden; /* Hide overflow to prevent content from overflowing */
+      display: flex; /* Use flexbox */
+      justify-content: center; /* Center items horizontally */
+      align-items: center; /* Center items vertically */
+    }
+
+    /* Style the image or video */
+    .media {
+      width: 100%; /* Take up full width of container */
+      height: auto; /* Maintain aspect ratio */
+      object-fit: cover; /* Ensure images/videos cover the container */
+    }
+
+    /* Style the text container */
+    .text-container {
+  width: 30%; /* 30% of horizontal space */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff; /* White background */
+  z-index: 2; /* Ensure text is above media */
+  opacity: 0; /* Initially hide text */
+  transform: translateY(50px); /* Move text down */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Add transition */
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Align text center */
+  height: 70%; /* Set height to 70% of section height */
+}
+
+    /* Style the text container when it's visible */
+    .text-container.visible {
+      opacity: 1; /* Show text */
+      transform: translateY(0); /* Move text back to original position */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section 1 -->
+  <section class="section" id="section1">
+    <div class="media-container">
+      <img class="media" src="img/0.png" alt="Image 1"> <!-- PNG Image -->
+    </div>
+    <div class="text-container visible"> <!-- Make text container visible by default -->
+      <h2>Description 1</h2> <!-- Text description -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="section" id="section2">
+    <div class="media-container">
+      <video class="media" loop muted autoplay>
+        <source src="img/sun.mp4" type="video/mp4"> <!-- MP4 Video -->
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="text-container">
+      <h2>Description 2</h2> <!-- Text description -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="section" id="section3">
+    <div class="media-container">
+      <img class="media" src="img/3.png" alt="Image 3"> <!-- PNG Image -->
+    </div>
+    <div class="text-container">
+      <h2>Description 3</h2> <!-- Text description -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="section" id="section4">
+    <div class="media-container">
+      <video class="media" loop muted autoplay>
+        <source src="img/sun.mp4" type="video/mp4"> <!-- MP4 Video -->
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="text-container">
+      <h2>Description 4</h2> <!-- Text description -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="section" id="section5">
+    <div class="media-container">
+      <img class="media" src="img/6.png" alt="Image 5"> <!-- PNG Image -->
+    </div>
+    <div class="text-container">
+      <h2>Description 5</h2> <!-- Text description -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.section');
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        const scrollPosition = window.scrollY;
+
+        if (scrollPosition >= sectionTop - sectionHeight * 0.5 && scrollPosition <= sectionTop + sectionHeight) {
+          section.querySelector('.text-container').classList.add('visible');
+        } else {
+          section.querySelector('.text-container').classList.remove('visible');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
